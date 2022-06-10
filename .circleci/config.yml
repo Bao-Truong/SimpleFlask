@@ -56,8 +56,8 @@ jobs:
           name: Upload images to ECR
           command: |
             
-            docker tag flask-server:latest 956722820961.dkr.ecr.us-east-2.amazonaws.com/flask-server:${CIRCLE_SHA1}
-            docker push 956722820961.dkr.ecr.us-east-2.amazonaws.com/flask-server:${CIRCLE_SHA1}
+            docker tag flask-server:latest 956722820961.dkr.ecr.us-east-2.amazonaws.com/flask-server:${CIRCLE_SHA1:0:7}
+            docker push 956722820961.dkr.ecr.us-east-2.amazonaws.com/flask-server:${CIRCLE_SHA1:0:7}
             
             docker tag flask-server:latest 956722820961.dkr.ecr.us-east-2.amazonaws.com/flask-server:latest
             docker push 956722820961.dkr.ecr.us-east-2.amazonaws.com/flask-server:latest
@@ -108,6 +108,9 @@ jobs:
             
             cat deployment/k8s/flaskServer.yml
             kubectl apply -f deployment/k8s/flaskServer.yml
+            kubectl annotate deployment flaskserver kubernetes.io/change-cause="${CIRCLE_SHA1:0:7}"
+            
+            kubectl apply -f deployment/k8s/flaskServerService.yml
           
     
 workflows:
