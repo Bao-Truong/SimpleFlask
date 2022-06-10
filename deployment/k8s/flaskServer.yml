@@ -23,7 +23,7 @@ spec:
         app: flaskServer
     spec:
       containers:
-      - image: flaskServer:latest
+      - image:  956722820961.dkr.ecr.us-east-2.amazonaws.com/flask-server:IMAGE_VERSION
         name: flaskServer
         resources: {}
 status: {}
