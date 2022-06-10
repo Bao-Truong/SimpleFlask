@@ -51,6 +51,9 @@ jobs:
             $(aws ecr get-login --no-include-email --region us-east-2) #AWSCLI v1
       - run:
           name: Upload images to ECR
+          environment:
+            HOST_PORT: 8081
+            HOST_URL: 0.0.0.0
           command: |
             
             docker tag flask-server:latest 956722820961.dkr.ecr.us-east-2.amazonaws.com/flask-server:${CIRCLE_SHA1}
