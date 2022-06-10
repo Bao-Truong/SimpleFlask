@@ -8,7 +8,7 @@ create-ecr:
               --tags project=flaskServer_k8s \
               --region us-east-2 \
               --stack-name "flaskServer" \
-              --parameter-overrides RegistryName="flask_server"
+              --parameter-overrides RegistryName="flask-server"
     
 connect-eks:
 	aws --version

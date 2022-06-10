@@ -2,7 +2,7 @@ Parameters:
     RegistryName:
         Description: Name for Registry
         Type: String
-        Default: "flask_server"
+        Default: "flask-server"
     AWSAccountID:
         Description: Your AWS Account ID
         Type: String
