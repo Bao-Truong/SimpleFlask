@@ -1,0 +1,31 @@
+version: "3.3"
+services:
+          
+    # frontend:
+    #     build:
+    #         context: ../
+    #         dockerfile: ./dockerfiles/dockerfile.frontend
+    #     image: capstone_frontend:latest
+    #     container_name: capstone_frontend
+    #     tty: true
+    #     restart: always
+    #     ports:
+    #         - 80:80
+    flaskServer:
+        build:
+            context: ../
+            dockerfile: ./dockerfiles/dockerfile.flask.yml
+            args:
+                - HOST_URL=$HOST_URL
+                - HOST_PORT=$HOST_PORT
+        image: flaskServer:latest
+        container_name: flaskServer
+        environment:
+            - HOST_URL="0.0.0.0"
+            - HOST_PORT="8081"
+        tty: true
+        restart: always
+        ports:
+            - 8081:8081
+    
+        

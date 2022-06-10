@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: flaskServer
+  name: flaskServer
+spec:
+  replicas: 4
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 3
+      maxUnavailable: 50%
+  selector:
+    matchLabels:
+      app: flaskServer
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: flaskServer
+    spec:
+      containers:
+      - image: flaskServer:latest
+        name: flaskServer
+        resources: {}
+status: {}

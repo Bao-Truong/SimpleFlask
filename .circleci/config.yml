@@ -1,0 +1,105 @@
+version: 2.1
+
+orbs:
+  slack: circleci/slack@4.1
+  aws-cli: circleci/aws-cli@2.0.3
+
+
+
+jobs:
+          
+  create-ecr-registry:
+    docker: 
+      - image: python:3.7.3-stretch
+    steps:
+      - checkout
+      - run:  
+          name: Install Dependencies
+          command: |
+            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+            unzip awscliv2.zip
+            ./aws/install
+      - run:
+          name: Deploy ECR resource
+          command: |
+            make create-ecr
+ 
+  build-and-upload-docker-images:
+    docker:
+      - image: 'docker:stable-dind'
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:  
+          name: Install Dependencies
+          command: |
+            apk add --update curl unzip tar wget npm nodejs make
+            apk add --no-cache aws-cli docker-compose
+            which aws
+            
+            curl -LO "https://dl.k8s.io/$(curl -LO https://dl.k8s.io/release/v1.21.0/bin/linux/amd64/kubectl)/bin/linux/amd64/kubectl.sha256"
+            chmod +x kubectl
+            install -o root -g root -m 0755 ./kubectl /usr/local/bin/kubectl
+      - run:
+          name: Build docker images (backend and frontend)
+          command: |
+            cd dockerfiles
+            docker-compose build --no-cache
+      - run:
+          name: Login to ECR
+          command: |
+            $(aws ecr get-login --no-include-email --region us-east-2) #AWSCLI v1
+      - run:
+          name: Upload images to ECR
+          command: |
+            
+            docker tag flaskServer:latest 956722820961.dkr.ecr.us-east-2.amazonaws.com/flaskServer:${CIRCLE_WORKFLOW_ID:0:7}
+            docker push 956722820961.dkr.ecr.us-east-2.amazonaws.com/flaskServer:${CIRCLE_WORKFLOW_ID:0:7}
+            
+            docker tag flaskServer:latest 956722820961.dkr.ecr.us-east-2.amazonaws.com/flaskServer:latest
+            docker push 956722820961.dkr.ecr.us-east-2.amazonaws.com/flaskServer:latest
+  
+  # deploy-server:
+  #   docker:
+  #     - image: python:3.7.3-stretch
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Install dependencies
+  #         command: |
+  #           apt update
+  #           apt install -y awscli tar gzip curl
+  #           curl -LO "https://dl.k8s.io/$(curl -LO https://dl.k8s.io/release/v1.21.0/bin/linux/amd64/kubectl)/bin/linux/amd64/kubectl.sha256"
+  #           chmod +x kubectl
+  #           install -o root -g root -m 0755 ./kubectl /usr/local/bin/kubectl
+  #     - run:
+  #         name: install awscli
+  #         command: |
+  #           curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+  #           unzip -q awscliv2.zip
+  #           ./aws/install
+  #     - run:
+  #         name: Connect to EKS
+  #         command: make connect-eks
+  #     - run:
+  #         name: Create deployment
+  #         command: |
+  #           ls -la
+  #           kubectl config current-context
+  #           kubectl config get-contexts
+  #           cat ~/.kube/config
+  #           sed -e 's,BACKEND_IMAGE_VERSION,'${CIRCLE_WORKFLOW_ID:0:7}',g' -i deployment/k8s/deployment.yml
+  #           sed -e 's,FRONTEND_IMAGE_VERSION,'${CIRCLE_WORKFLOW_ID:0:7}',g' -i deployment/k8s/deployment.yml
+  #           cat deployment/k8s/deployment.yml
+  #           kubectl apply -f deployment/k8s/deployment.yml
+          
+    
+workflows:
+  default:
+    jobs:
+      - create-ecr-registry
+      - build-and-upload-docker-images:
+          requires: [create-ecr-registry]
+      # - deploy-server:
+      #     requires: [build-and-upload-docker-images]
+     
