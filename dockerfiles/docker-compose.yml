@@ -18,8 +18,8 @@ services:
             args:
                 - HOST_URL=$HOST_URL
                 - HOST_PORT=$HOST_PORT
-        image: flaskServer:latest
-        container_name: flaskServer
+        image: flask_server:latest
+        container_name: flask_server
         environment:
             - HOST_URL="0.0.0.0"
             - HOST_PORT="8081"

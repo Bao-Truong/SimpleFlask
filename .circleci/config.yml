@@ -53,11 +53,11 @@ jobs:
           name: Upload images to ECR
           command: |
             
-            docker tag flaskServer:latest 956722820961.dkr.ecr.us-east-2.amazonaws.com/flaskServer:${CIRCLE_WORKFLOW_ID:0:7}
-            docker push 956722820961.dkr.ecr.us-east-2.amazonaws.com/flaskServer:${CIRCLE_WORKFLOW_ID:0:7}
+            docker tag flask_server:latest 956722820961.dkr.ecr.us-east-2.amazonaws.com/flask_server:${CIRCLE_WORKFLOW_ID:0:7}
+            docker push 956722820961.dkr.ecr.us-east-2.amazonaws.com/flask_server:${CIRCLE_WORKFLOW_ID:0:7}
             
-            docker tag flaskServer:latest 956722820961.dkr.ecr.us-east-2.amazonaws.com/flaskServer:latest
-            docker push 956722820961.dkr.ecr.us-east-2.amazonaws.com/flaskServer:latest
+            docker tag flask_server:latest 956722820961.dkr.ecr.us-east-2.amazonaws.com/flask_server:latest
+            docker push 956722820961.dkr.ecr.us-east-2.amazonaws.com/flask_server:latest
   
   # deploy-server:
   #   docker:
