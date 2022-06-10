@@ -1,0 +1,6 @@
+[2022-06-10 07:36:03,769] INFO werkzeug :  * Running on all addresses (0.0.0.0)
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://127.0.0.1:8081
+ * Running on http://172.31.47.158:8081 (Press CTRL+C to quit)
+[2022-06-10 07:36:26,641] INFO werkzeug : 127.0.0.1 - - [10/Jun/2022 07:36:26] "GET / HTTP/1.1" 200 -
+[2022-06-10 07:36:47,419] INFO werkzeug : 127.0.0.1 - - [10/Jun/2022 07:36:47] "GET / HTTP/1.1" 200 -
