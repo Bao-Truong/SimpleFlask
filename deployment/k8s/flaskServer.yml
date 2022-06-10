@@ -3,8 +3,8 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: flaskServer
-  name: flaskServer
+    app: flaskserver
+  name: flaskserver
 spec:
   replicas: 4
   strategy:
@@ -14,16 +14,16 @@ spec:
       maxUnavailable: 50%
   selector:
     matchLabels:
-      app: flaskServer
+      app: flaskserver
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: flaskServer
+        app: flaskserver
     spec:
       containers:
-      - image:  956722820961.dkr.ecr.us-east-2.amazonaws.com/flask-server:IMAGE_VERSION
-        name: flaskServer
+      - image:  956722820961.dkr.ecr.us-east-2.amazonaws.com/flask-server:latest
+        name: flaskserver
         resources: {}
 status: {}
