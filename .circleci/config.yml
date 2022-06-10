@@ -104,7 +104,7 @@ jobs:
             kubectl config current-context
             kubectl config get-contexts
             cat ~/.kube/config
-            sed -e 's,IMAGE_VERSION,'${CIRCLE_SHA1}',g' -i deployment/k8s/flaskServer.yml
+            sed -e 's,IMAGE_VERSION,'${CIRCLE_SHA1:0:7}',g' -i deployment/k8s/flaskServer.yml
             
             cat deployment/k8s/flaskServer.yml
             kubectl apply -f deployment/k8s/flaskServer.yml
