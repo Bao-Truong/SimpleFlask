@@ -86,7 +86,7 @@ jobs:
           command: |
           
             kubectl config set clusters.kubernetes.certificate-authority-data ${certificate_authority_data}
-            kubectl config set clusters.kubernetes.server https://18.190.166.145:6443
+            kubectl config set clusters.kubernetes.server https://cluster.cs-truong.com:6443
             
             kubectl config set users.admin.client-key-data ${client_key_data}
             kubectl config set users.admin.client-certificate-data ${client_certificate_data}

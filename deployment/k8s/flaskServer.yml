@@ -5,6 +5,7 @@ metadata:
   labels:
     app: flaskserver
   name: flaskserver
+  namespace: flask
 spec:
   replicas: 4
   strategy:
