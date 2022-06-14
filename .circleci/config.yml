@@ -108,10 +108,20 @@ jobs:
             sed -e 's,IMAGE_VERSION,'${CIRCLE_SHA1:0:7}',g' -i deployment/k8s/flaskServer.yml
             
             cat deployment/k8s/flaskServer.yml
+            
+            # FLASKServer
+            kubectl apply -f deployment/k8s/flaskNamespace.yml
+            
             kubectl apply -f deployment/k8s/flaskServer.yml
             kubectl annotate deployment flaskserver -n flask kubernetes.io/change-cause="${CIRCLE_SHA1:0:7}"
             
             kubectl apply -f deployment/k8s/flaskServerService.yml
+            
+            # NGINX
+            kubectl apply -f deployment/k8s/nginx_deployment.yml
+            kubectl annotate deployment nginx -n nginx kubernetes.io/change-cause="${CIRCLE_SHA1:0:7}"
+            
+            kubectl apply -f deployment/k8s/nginx_service.yml
           
     
 workflows:
