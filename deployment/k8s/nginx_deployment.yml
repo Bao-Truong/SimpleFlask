@@ -19,7 +19,7 @@ spec:
         app: nginx
     spec:
       containers:
-      - image: 956722820961.dkr.ecr.us-east-2.amazonaws.com/simple-nginx:latest
+      - image: 956722820961.dkr.ecr.us-east-2.amazonaws.com/simple-nginx:IMAGE_VERSION
         name: simple-nginx
         resources: {}
 status: {}
