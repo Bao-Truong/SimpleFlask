@@ -1,0 +1,19 @@
+[2022-06-14 06:52:40,056] INFO werkzeug :  * Running on all addresses (0.0.0.0)
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://127.0.0.1:8082
+ * Running on http://172.31.47.158:8082 (Press CTRL+C to quit)
+[2022-06-14 06:52:46,116] INFO werkzeug : 127.0.0.1 - - [14/Jun/2022 06:52:46] "GET / HTTP/1.1" 200 -
+[2022-06-14 06:52:47,622] INFO werkzeug : 127.0.0.1 - - [14/Jun/2022 06:52:47] "[33mGET /flask HTTP/1.1[0m" 404 -
+[2022-06-14 06:55:03,263] INFO werkzeug :  * Running on all addresses (0.0.0.0)
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://127.0.0.1:8082
+ * Running on http://172.31.47.158:8082 (Press CTRL+C to quit)
+[2022-06-14 06:55:06,659] INFO werkzeug : 127.0.0.1 - - [14/Jun/2022 06:55:06] "[32mGET /flask HTTP/1.1[0m" 308 -
+[2022-06-14 06:55:24,684] INFO werkzeug : 127.0.0.1 - - [14/Jun/2022 06:55:24] "GET /flask/secret HTTP/1.1" 200 -
+[2022-06-14 06:56:18,006] INFO werkzeug :  * Running on all addresses (0.0.0.0)
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://127.0.0.1:8082
+ * Running on http://172.31.47.158:8082 (Press CTRL+C to quit)
+[2022-06-14 06:56:21,492] INFO werkzeug : 127.0.0.1 - - [14/Jun/2022 06:56:21] "GET /flask/secret HTTP/1.1" 200 -
+[2022-06-14 06:56:27,366] INFO werkzeug : 127.0.0.1 - - [14/Jun/2022 06:56:27] "[33mGET /secret HTTP/1.1[0m" 404 -
+[2022-06-14 06:56:34,397] INFO werkzeug : 127.0.0.1 - - [14/Jun/2022 06:56:34] "[32mGET /flask HTTP/1.1[0m" 308 -

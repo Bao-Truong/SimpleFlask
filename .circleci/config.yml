@@ -109,7 +109,7 @@ jobs:
             
             cat deployment/k8s/flaskServer.yml
             kubectl apply -f deployment/k8s/flaskServer.yml
-            kubectl annotate deployment flaskserver kubernetes.io/change-cause="${CIRCLE_SHA1:0:7}"
+            kubectl annotate deployment flaskserver -n flask kubernetes.io/change-cause="${CIRCLE_SHA1:0:7}"
             
             kubectl apply -f deployment/k8s/flaskServerService.yml
           

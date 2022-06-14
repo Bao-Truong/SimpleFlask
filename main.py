@@ -2,14 +2,17 @@ from flask import Flask
 from dotenv import load_dotenv
 from controller.metadata import Metadata
 from util.secrets import secretGenerator
+from util.prefix import *
 import os 
 import logging
 
- 
+
 logging.basicConfig(filename = 'logs/flask.log', level=logging.INFO, format='[%(asctime)s] %(levelname)s %(name)s : %(message)s')
 
 app = Flask(__name__)
 app.config["APPLICATION_ROOT"] = "/flask"
+app.wsgi_app = PrefixMiddleware(app.wsgi_app, prefix='/flask')
+
 
 @app.route("/")
 def homepage():
