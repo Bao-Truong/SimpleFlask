@@ -59,8 +59,14 @@ jobs:
             docker tag flask-server:latest 956722820961.dkr.ecr.us-east-2.amazonaws.com/flask-server:${CIRCLE_SHA1:0:7}
             docker push 956722820961.dkr.ecr.us-east-2.amazonaws.com/flask-server:${CIRCLE_SHA1:0:7}
             
+            docker tag nginx:latest 956722820961.dkr.ecr.us-east-2.amazonaws.com/simple-nginx:${CIRCLE_SHA1:0:7}
+            docker push 956722820961.dkr.ecr.us-east-2.amazonaws.com/simple-nginx:${CIRCLE_SHA1:0:7}
+            
             docker tag flask-server:latest 956722820961.dkr.ecr.us-east-2.amazonaws.com/flask-server:latest
             docker push 956722820961.dkr.ecr.us-east-2.amazonaws.com/flask-server:latest
+            
+            docker tag nginx:latest 956722820961.dkr.ecr.us-east-2.amazonaws.com/simple-nginx:latest
+            docker push 956722820961.dkr.ecr.us-east-2.amazonaws.com/simple-nginx:latest
   
   deploy-server:
     docker:

@@ -16,5 +16,15 @@ services:
         restart: always
         ports:
             - 8081:8081
+    nginx:
+        build:
+            context: ../
+            dockerfile: ./dockerfiles/dockerfile.nginx.yml
+        image: nginx:latest
+        container_name: nginx
+        tty: true
+        restart: always
+        ports:
+            - 80:80
     
         
