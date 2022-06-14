@@ -9,6 +9,7 @@ import logging
 logging.basicConfig(filename = 'logs/flask.log', level=logging.INFO, format='[%(asctime)s] %(levelname)s %(name)s : %(message)s')
 
 app = Flask(__name__)
+app.config["APPLICATION_ROOT"] = "/flask"
 
 @app.route("/")
 def homepage():

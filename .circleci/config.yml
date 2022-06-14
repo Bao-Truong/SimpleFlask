@@ -97,6 +97,7 @@ jobs:
             cat ~/.kube/config
             kubectl config use-context kubernetes
             kubectl config set-context kubernetes
+      
       - run:
           name: Create deployment
           command: |
