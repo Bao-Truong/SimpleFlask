@@ -11,6 +11,7 @@ spec:
   - port: 8081
     protocol: TCP
     targetPort: 8081
+    nodePort: 32434
   selector:
     app: flaskserver
   type: NodePort
