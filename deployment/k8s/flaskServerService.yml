@@ -5,6 +5,7 @@ metadata:
   labels:
     app: flaskserver
   name: flaskserver
+  namespace: flask
 spec:
   ports:
   - port: 8081
